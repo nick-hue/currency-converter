@@ -1,0 +1,54 @@
+import tkinter as tk
+from PIL import ImageTk,Image
+
+root = tk.Tk()
+root.title("Euro Currency Converter")
+root.geometry("400x200")
+
+clicked = tk.StringVar()
+clicked.set("US Dollar")
+
+def get_convert_num():
+	if  clicked.get() == "US Dollar":
+		convert_num = 1.171341
+	elif clicked.get() == "British Pound":
+		convert_num = 0.911436
+	elif clicked.get() == "Indian Rupee":
+		convert_num = 86.278571
+	elif clicked.get() == "Australian Dollar":
+		convert_num = 1.640412
+	elif clicked.get() == "Canadian Dollar":
+		convert_num = 1.565791
+	elif clicked.get() == "Swiss Franc":
+		convert_num = 1.079884
+	elif clicked.get() == "Japanese Yen":
+		convert_num = 123.722939
+	return convert_num
+
+def convert():
+	num = get_convert_num()
+	result = str(get_convert_num()*int(entry.get()))
+	result_label.config(text = f'{entry.get()} Euro are equal to: {result} {clicked.get()}')
+
+options = [
+	"US Dollar",
+	"British Pound",
+	"Indian Rupee",
+	"Australian Dollar",
+	"Canadian Dollar",
+	"Swiss Franc",
+	"Japanese Yen"
+]
+
+drop = tk.OptionMenu(root, clicked, *options)
+drop.place(x = 150, y = 16)
+
+entry = tk.Entry(root, width = 15, bd = 4)
+entry.place(x = 20, y = 20)
+
+convert_button = tk.Button(root, text = "CONVERT", command = convert, font = ("Helvetica", 18))
+convert_button.place(x = 20, y = 55)
+
+result_label = tk.Label(root, font = ("Helvetica", 15))
+result_label.place(x = 15, y = 120)
+root.mainloop()
